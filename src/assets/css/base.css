@@ -1,0 +1,54 @@
+.base-modal .modal-dialog {
+  display: block;
+  width: 600px;
+  background: #fff;
+  margin: 50px auto;
+  border-radius: 3px;
+}
+.base-modal .modal-title {
+  text-align: center;
+}
+.base-modal .modal-body {
+    padding: 15px 20px;
+}
+.btn-base {
+  padding: 10px 20px;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-save {
+  background: #4B99FF;
+}
+.btn-delete {
+  background: #cf1d0a;
+}
+.form-group label {
+  font-weight: 600;
+  font-size: 13px;
+}
+.form-group label.error {
+  position: absolute;
+  font-size: 11px;
+  color: #cf1d0a;
+  padding-bottom: 0;
+}
+.mar-top-30 {
+  margin-top: 30px;
+}
+.mar-top-15 {
+  margin-top: 15px;
+}
+.mar-bottom-15 {
+  margin-bottom: 15px;
+}
+.mar-left-15 {
+  margin-left: 15px;
+}
+.mar-right-15 {
+  margin-right: 15px;
+}
+.txt-capitalize {
+    text-transform: capitalize;
+}

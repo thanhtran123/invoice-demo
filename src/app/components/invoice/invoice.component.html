@@ -1,0 +1,128 @@
+<div class="invoice-ctn">
+  <div class="col-xs-12">
+    <h2>Invoice Management</h2>
+  </div>
+  <div class="col-xs-12 mar-top-15">
+    <div class="search-ctn">
+      <input type="text" placeholder="Search anything" [(ngModel)]="searchTerm">
+    </div>
+    <div class="add-button">
+      <span class="btn-primary" (click)="showInvoice()">Add</span>
+    </div>
+  </div>
+  <div class="col-xs-12 invoice-list-ctn">
+    <div class="table-responsive">
+      <table cellspacing="0" class="table table-striped table-no-bordered table-hover dataTable dtr-inline client-table" id="datatables" style="width: 100%;" width="100%" role="grid" aria-describedby="datatables_info">
+        <thead>
+          <tr role="row">
+            <th class="sorting no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('name')" style="text-align: left !important; padding-left: 0 !important;">Invoice Name</th>
+            <th class="sorting no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('qty')" >Qty</th>
+            <th class="sorting no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('date')" >Invoice Date</th>
+            <th class="sorting_desc no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('customerName')" >Customer</th>
+            <th class="sorting no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('dueDate')">Due Date</th>
+            <th class="sorting no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('amount')">Invoice Amount</th>
+            <th class="sorting no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('totalPaid')">Total Paid</th>
+            <th class="sorting no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('openBalance')">OpenBalance</th>
+            <th class="sorting no-wrap" tabindex="0" aria-controls="datatables" rowspan="1" colspan="1" (click)="sort('status')">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr role="row" class="invoice-row" *ngFor="let invoice of invoices | FilterPipe: searchTerm" (click)="showInvoice(invoice)">
+            <td class="txt-capitalize">{{invoice.name | lowercase}}</td>
+            <td>{{invoice.qty}}</td>
+            <td>{{invoice.date | date: 'MM/dd/yyyy'}}</td>
+            <td class="txt-capitalize">{{invoice.customerName | lowercase}}</td>
+            <td>{{invoice.dueDate | date: 'MM/dd/yyyy'}}</td>
+            <td>{{invoice.amount}}</td>
+            <td>{{invoice.totalPaid}}</td>
+            <td>{{invoice.openBalance}}</td>
+            <td>{{invoice.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="invoicePopup" class="modal fade base-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h4 class="modal-title">{{invoiceModalTitle}}</h4>
+    </div>
+    <div class="modal-body">
+      <form class="invoice-form" id="invoiceForm" [(formGroup)]="invoiceForm">
+        <input type="hidden" name="id" formControlName="id">
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Invoice Name</label>
+              <input type="text" class="form-control" name="name" formControlName="name" placeholder="Invoice Name" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Customer Name</label>
+              <input type="text" class="form-control" name="customerName" formControlName="customerName" placeholder="Customer Name" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Qty</label>
+              <input type="number" class="form-control" name="qty" formControlName="qty" placeholder="Qty" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Amount</label>
+              <input type="number" class="form-control" name="amount" formControlName="amount" placeholder="Amount" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Total Paid</label>
+              <input type="number" class="form-control" name="totalPaid" formControlName="totalPaid" placeholder="Total Paid" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Open Balance</label>
+              <input type="number" class="form-control" name="openBalance" formControlName="openBalance" placeholder="Open Balance" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" class="form-control" name="date" formControlName="date" placeholder="Date" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Due Date</label>
+              <input type="date" class="form-control" name="date" formControlName="dueDate" placeholder="Due Date" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group">
+              <label>Status</label>
+              <input type="text" class="form-control" name="status" formControlName="status" placeholder="Status" required>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="form-group mar-top-30" align="right">
+              <span [hidden]="editType == 1" class="btn-base btn-delete mar-right-15" (click)="btnDeleteClick($event)">Delete</span>
+              <span class="btn-base btn-save" (click)="btnSaveClick($event)">Save</span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

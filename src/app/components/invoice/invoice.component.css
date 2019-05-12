@@ -1,0 +1,64 @@
+.invoice-ctn {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+.search-ctn {
+  padding: 0;
+  background: white;
+  border-radius: 3px;
+  position: relative;
+  float: left;
+}
+.search-ctn input {
+  height: 38px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 3px;
+  border: solid 1px #d6ddf0;
+  float: left;
+}
+.search-ctn input:focus {
+  box-shadow: 0 0 0 4px #d6ddf0;
+}
+.search-ctn input::-webkit-input-placeholder {
+  font-size: 13px;
+  font-weight: 400;
+  color: #d4dbe5;
+}
+.search-ctn input:-moz-placeholder { /* Firefox 18- */
+  font-size: 13px;
+  font-weight: 400;
+  color: #d4dbe5;
+}
+.search-ctn input::-moz-placeholder {  /* Firefox 19+ */
+  font-size: 13px;
+  font-weight: 400;
+  color: #d4dbe5;
+}
+.search-ctn input:-ms-input-placeholder {
+  font-size: 13px;
+  font-weight: 400;
+  color: #d4dbe5;
+}
+.add-button {
+  float: left;
+}
+.add-button span {
+  display: table;
+  width: 100px;
+  height: 38px;
+  background: #4B99FF;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  margin-left: 20px;
+  line-height: 38px;
+  cursor: pointer;
+}
+.invoice-list-ctn {
+  padding-top: 30px;
+}
+.invoice-row {
+  cursor: pointer;
+}
